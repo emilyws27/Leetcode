@@ -9,15 +9,16 @@ class Solution:
         diameter = 0
 
     
-        def longestPath(t, d):
+        def longestPath(t):
             nonlocal diameter
             if t == None:
                 return 0
-            right = longestPath(t.right, d)
-            left = longestPath(t.left, d)
+            right = longestPath(t.right)
+            left = longestPath(t.left)
             diameter = max(diameter, left+right)
             return max(left,right) + 1
-        longestPath(root, diameter)
+        
+        longestPath(root)
         return diameter
             
         
