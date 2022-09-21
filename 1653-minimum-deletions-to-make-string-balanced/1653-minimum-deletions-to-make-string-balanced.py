@@ -3,13 +3,12 @@ class Solution:
         stack = []
         res = 0
         
-        for i in range(0 , len(s)):
+        for i in range(len(s)):
             if s[i] == 'b':
                 stack.append('b')
-            else:
-                if len(stack) == 0:
+            elif len(stack) == 0:
                     continue
-                else:
-                    stack.pop()
-                    res += 1
+            else:
+                stack.pop()
+                res += 1
         return res
