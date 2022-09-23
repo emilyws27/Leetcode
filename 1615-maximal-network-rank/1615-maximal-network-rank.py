@@ -5,7 +5,6 @@ class Solution:
         for a, b in roads:
             d[a].add(b)
             d[b].add(a)
-        print(d)
         res = 0
         for i in range(n):
             for j in range(i + 1, n):
