@@ -1,26 +1,18 @@
 class Solution:
     def nextGreaterElement(self, n):
+        digits = list(str(n))
+        i = len(digits) - 1
+        while i-1 >= 0 and digits[i] <= digits[i-1]:
+            i -= 1
+            
+        if i == 0: return -1
         
-        n=list(str(n))
-        N=len(n)
-        i=None
+        j = i
+        while j+1 < len(digits) and digits[j+1] > digits[i-1]:
+            j += 1
         
-        for x in range(N-1,0,-1):
-            if n[x]>n[x-1]:
-                i=x-1
-                break
-        else:
-            return -1
+        digits[i-1], digits[j] = digits[j], digits[i-1]
+        digits[i:] = digits[i:][::-1]
+        ret = int(''.join(digits))
         
-        swap=i+1
-        pos=i
-        
-        for x in range(swap,N):
-            if n[pos]<n[x]<n[swap]:
-                swap=x
-                
-        n[pos],n[swap]=n[swap],n[pos]
-                 
-        ans=int(''.join(n[:pos+1])+''.join(sorted(n[pos+1:])))
-        
-        return ans if len(bin(ans)[2:])<32 else -1
+        return ret if ret < 1<<31 else -1
