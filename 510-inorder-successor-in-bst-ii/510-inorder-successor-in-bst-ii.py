@@ -10,13 +10,13 @@ class Node:
 
 class Solution:
     def inorderSuccessor(self, node: 'Node') -> 'Optional[Node]':
-        successor = None
-        
         if node.right:
             node = node.right
-            while node.left:
-                node = node.left
+            while node.left: node = node.left
             return node
-        while node.parent  and node.parent.val < node.val:
+
+        while node.parent: 
+            if node.parent.left == node:
+                return node.parent
             node = node.parent
-        return node.parent
+        return None
